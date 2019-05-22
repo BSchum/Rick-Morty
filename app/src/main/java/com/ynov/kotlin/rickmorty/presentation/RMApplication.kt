@@ -3,6 +3,7 @@ package com.ynov.kotlin.rickmorty.presentation
 import android.app.Application
 import android.provider.ContactsContract
 import com.ynov.kotlin.rickmorty.data.ApiManager
+import com.ynov.kotlin.rickmorty.data.CacheManager
 import com.ynov.kotlin.rickmorty.data.DataRepository
 
 class RMApplication: Application() {
@@ -11,7 +12,7 @@ class RMApplication: Application() {
     }
 
 
-    var repo : DataRepository = DataRepository(ApiManager())
+    var repo : DataRepository = DataRepository(ApiManager(), CacheManager())
 
     override fun onCreate() {
         super.onCreate()

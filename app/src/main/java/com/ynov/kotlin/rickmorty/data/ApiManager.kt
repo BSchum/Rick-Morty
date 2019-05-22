@@ -23,9 +23,10 @@ open class ApiManager {
         fun retrieveCharacter(@Path("id") id: Int ) : Single<CharacterRemoteEntity>
     }
 
-    fun retrieveCharacterList(): Single<List<CharacterRemoteEntity>> = service.retrieveCharacterList().map{
-        it.results
-    }
+    fun retrieveCharacterList(): Single<List<CharacterRemoteEntity>> =
+        service.retrieveCharacterList().map{ it.results }
+
+
 
     fun retrieveCharacter(id: Int) : Single<CharacterRemoteEntity> = service.retrieveCharacter(id)
 
