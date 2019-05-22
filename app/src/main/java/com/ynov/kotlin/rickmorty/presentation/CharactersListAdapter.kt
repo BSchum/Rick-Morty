@@ -29,11 +29,11 @@ class CharactersListAdapter : RecyclerView.Adapter<CharactersListAdapter.ViewHol
     override fun getItemCount(): Int {
         return characters.size
     }
-    fun updateList(characters: List<RMCharacter> ){
+    fun updateList(characters: List<RMCharacter>){
         this.characters.clear()
         this.characters.addAll(characters)
         notifyDataSetChanged()
-    }
+}
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(this.characters.get(position), onClickCallBack)
     }

@@ -37,7 +37,17 @@ class ListFragment :Fragment() {
             intent.putExtra("id", it)
             startActivity(intent)
         }
+        swipe_refresh_layout.setOnRefreshListener {
+            var onSuccessCallback = {
+                swipe_refresh_layout.isRefreshing = false
+            }
+            viewModel.Refresh(onSuccessCallback)
+        }
         viewModel = ViewModelProviders.of(this).get(CharacterListViewModel::class.java)
-        viewModel.characterListLiveData.observe(this, Observer { charactersListAdapter.updateList(it)})
+        viewModel.characterListLiveData.observe(this, Observer {
+            charactersListAdapter.updateList(it)
+        })
+
+
     }
 }
