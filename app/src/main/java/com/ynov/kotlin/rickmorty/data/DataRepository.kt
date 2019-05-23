@@ -1,7 +1,7 @@
 package com.ynov.kotlin.rickmorty.data
 
-import com.ynov.kotlin.rickmorty.data.entity.CharacterRemoteEntity
 import com.ynov.kotlin.rickmorty.data.model.RMCharacter
+import com.ynov.kotlin.rickmorty.data.model.RMEpisode
 import io.reactivex.Single
 
 class DataRepository(private val apiManager : ApiManager , private val cacheManager: CacheManager){
@@ -26,5 +26,22 @@ class DataRepository(private val apiManager : ApiManager , private val cacheMana
             apiManager.retrieveCharacter(id).map { characterRemoteEntity ->
                 RMCharacter(characterRemoteEntity.id ,characterRemoteEntity.name, characterRemoteEntity.image)
             }
+
+    fun retrieveEpisodeList(): Single<List<RMEpisode>> {
+        return Single.defer<List<RMEpisode>>{
+            if(cacheManager.episodeList.isEmpty()){
+                apiManager.retrieveEpisodeList().map {
+                    return@map it.map{ episodeRemoteEntity ->
+                        RMEpisode(episodeRemoteEntity.id, episodeRemoteEntity.name, episodeRemoteEntity.air_date, episodeRemoteEntity.episode)
+                    }
+                }.doAfterSuccess{
+                    cacheManager.episodeList = it
+                }
+            }
+            else {
+                Single.just(cacheManager.episodeList)
+            }
+        }
+    }
 
 }

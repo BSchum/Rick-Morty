@@ -11,7 +11,6 @@ class RMApplication: Application() {
         lateinit var app: RMApplication
     }
 
-
     var repo : DataRepository = DataRepository(ApiManager(), CacheManager())
 
     override fun onCreate() {

@@ -1,13 +1,12 @@
 package com.ynov.kotlin.rickmorty.data
 
-import com.ynov.kotlin.rickmorty.data.entity.CharacterRemoteEntity
 import com.ynov.kotlin.rickmorty.data.model.RMCharacter
-import io.reactivex.Single
+import com.ynov.kotlin.rickmorty.data.model.RMEpisode
 
 class CacheManager {
 
     var characterList : List<RMCharacter> = emptyList()
-
+    var episodeList : List<RMEpisode> = emptyList()
 
 
 }
