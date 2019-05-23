@@ -4,11 +4,11 @@
     <item
             android:id="@+id/action_android"
             android:enabled="true"
-            android:title="@string/bottom_navigation_menu_android"
-            app:showAsAction="ifRoom" />
+            android:title="@string/bottom_navigation_menu_characters"
+            />
     <item
             android:id="@+id/action_logo"
             android:enabled="true"
-            android:title="@string/bottom_navigation_menu_logos"
-            app:showAsAction="ifRoom" />
+            android:title="@string/bottom_navigation_menu_episodes"
+            />
 </menu>

@@ -3,6 +3,6 @@
     <string name="title_activity_detail">DetailActivity</string>
 
     <!-- BOTTOM NAVIGATION VIEW -->
-    <string name="bottom_navigation_menu_logos">Logo</string>
-    <string name="bottom_navigation_menu_android">Android</string>
+    <string name="bottom_navigation_menu_characters">Personnages</string>
+    <string name="bottom_navigation_menu_episodes">Episodes</string>
 </resources>

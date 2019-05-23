@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.view_character_list_item.view.*
 
 class CharactersListAdapter : RecyclerView.Adapter<CharactersListAdapter.ViewHolder>() {
     private var characters: MutableList<RMCharacter> = mutableListOf()
-    lateinit var onClickCallBack: (id: Int) -> Unit
+    var onClickCallBack : ((id: Int) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.view_character_list_item, parent, false))
     }
@@ -32,11 +32,11 @@ class CharactersListAdapter : RecyclerView.Adapter<CharactersListAdapter.ViewHol
     }
 
     class ViewHolder(@NonNull itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(rmCharacter: RMCharacter, onClickCallBack: (id: Int)-> Unit){
+        fun bind(rmCharacter: RMCharacter, onClickCallBack: ((id: Int)-> Unit)?){
             itemView.nameField.text = rmCharacter.name
             Picasso.get().load(rmCharacter.url).into(itemView.imageField)
             itemView.setOnClickListener {
-                onClickCallBack(rmCharacter.id)
+                onClickCallBack?.let { callBack -> callBack(rmCharacter.id) }
             }
         }
     }

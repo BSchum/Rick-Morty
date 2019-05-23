@@ -23,21 +23,25 @@ class MainActivity : AppCompatActivity() {
 
             when(it.itemId) {
                 R.id.action_android -> {
-                    supportFragmentManager.beginTransaction().replace(
-                        R.id.main_activity_fragment_container, ListFragment()).commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_activity_fragment_container, ListFragment())
+                        .commit()
+                    return@setOnNavigationItemSelectedListener true
                 }
                 R.id.action_logo -> {
-                        supportFragmentManager.beginTransaction()
+                    supportFragmentManager.beginTransaction()
                         .replace(R.id.main_activity_fragment_container, EpisodeListFragment())
                         .commit()
+                    return@setOnNavigationItemSelectedListener true
                 }
                 else -> {
                     supportFragmentManager.beginTransaction()
-                    .replace(R.id.main_activity_fragment_container, ListFragment())
-                    .commit()
+                        .replace(R.id.main_activity_fragment_container, ListFragment())
+                        .commit()
+                    return@setOnNavigationItemSelectedListener true
                 }
             }
-            false
+
         }
 
     }

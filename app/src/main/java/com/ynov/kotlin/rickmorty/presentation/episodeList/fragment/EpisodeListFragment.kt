@@ -13,7 +13,7 @@ import com.ynov.kotlin.rickmorty.extensions.DoSnackBar
 import com.ynov.kotlin.rickmorty.presentation.episodeList.EpisodesListAdapter
 import com.ynov.kotlin.rickmorty.presentation.episodeList.viewModel.EpisodeListViewModel
 import kotlinx.android.synthetic.main.fragment_list.*
-class EpisodeListFragment : Fragment(){
+class  EpisodeListFragment : Fragment(){
 
     lateinit var viewModel: EpisodeListViewModel
 
