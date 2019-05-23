@@ -47,7 +47,5 @@ class ListFragment :Fragment() {
         viewModel.characterListLiveData.observe(this, Observer {
             charactersListAdapter.updateList(it)
         })
-
-
     }
 }

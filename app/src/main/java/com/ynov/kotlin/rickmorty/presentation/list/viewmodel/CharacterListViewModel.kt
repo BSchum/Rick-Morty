@@ -22,8 +22,8 @@ class CharacterListViewModel : ViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
                 onSuccess = {
-                    onSuccessCallBack()
                     characterListLiveData.postValue(it)
+                    onSuccessCallBack()
                 },
                 onError = {
                     Log.e("ERROR", "", it)
