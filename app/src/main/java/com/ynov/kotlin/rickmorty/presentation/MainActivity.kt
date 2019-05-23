@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
                     .replace(R.id.main_activity_fragment_container, ListFragment())
                     .commit()
                 }
-
             }
             false
         }

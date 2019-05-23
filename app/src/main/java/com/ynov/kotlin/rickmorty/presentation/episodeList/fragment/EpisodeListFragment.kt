@@ -1,6 +1,5 @@
 package com.ynov.kotlin.rickmorty.presentation.episodeList.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,11 +9,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ynov.kotlin.rickmorty.R
-import com.ynov.kotlin.rickmorty.presentation.DetailActivity
+import com.ynov.kotlin.rickmorty.extensions.DoSnackBar
 import com.ynov.kotlin.rickmorty.presentation.episodeList.EpisodesListAdapter
 import com.ynov.kotlin.rickmorty.presentation.episodeList.viewModel.EpisodeListViewModel
 import kotlinx.android.synthetic.main.fragment_list.*
-
 class EpisodeListFragment : Fragment(){
 
     lateinit var viewModel: EpisodeListViewModel
@@ -29,14 +27,18 @@ class EpisodeListFragment : Fragment(){
         episodesListAdapter = EpisodesListAdapter()
         fragment_list_recycler_view.layoutManager = LinearLayoutManager(requireContext())
         fragment_list_recycler_view.adapter = episodesListAdapter
-        //episodesListAdapter.onClickCallBack = {
-        //    var intent = Intent(context, DetailActivity::class.java)
-        //    intent.putExtra("id", it)
-        //    startActivity(intent)
-        //}
+        swipe_refresh_layout.setOnRefreshListener {
+            viewModel.Refresh()
+        }
         viewModel = ViewModelProviders.of(this).get(EpisodeListViewModel::class.java)
         viewModel.episodeListLiveData.observe(this, Observer {
             episodesListAdapter.updateList(it)
+            swipe_refresh_layout.isRefreshing = false
+        })
+
+        viewModel.errorLiveData.observe(this, Observer {
+            view.DoSnackBar("Erreur lors de la récupération des episodes")
+            swipe_refresh_layout.isRefreshing = false
         })
     }
 }

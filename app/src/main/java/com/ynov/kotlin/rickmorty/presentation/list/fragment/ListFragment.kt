@@ -7,17 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.ynov.kotlin.rickmorty.R
-import com.ynov.kotlin.rickmorty.data.model.RMCharacter
-import com.ynov.kotlin.rickmorty.presentation.CharactersListAdapter
+import com.ynov.kotlin.rickmorty.extensions.DoSnackBar
+import com.ynov.kotlin.rickmorty.presentation.list.CharactersListAdapter
 import com.ynov.kotlin.rickmorty.presentation.DetailActivity
 import com.ynov.kotlin.rickmorty.presentation.list.viewmodel.CharacterListViewModel
-import io.reactivex.annotations.NonNull
-import io.reactivex.annotations.Nullable
 import kotlinx.android.synthetic.main.fragment_list.*
 
 class ListFragment :Fragment() {
@@ -33,11 +30,13 @@ class ListFragment :Fragment() {
         charactersListAdapter = CharactersListAdapter()
         fragment_list_recycler_view.layoutManager = LinearLayoutManager(context)
         fragment_list_recycler_view.adapter = charactersListAdapter
+
         charactersListAdapter.onClickCallBack = {
             var intent = Intent(context, DetailActivity::class.java)
             intent.putExtra("id", it)
             startActivity(intent)
         }
+
         swipe_refresh_layout.setOnRefreshListener {
             viewModel.Refresh()
         }
@@ -48,7 +47,7 @@ class ListFragment :Fragment() {
         })
 
         viewModel.errorLiveData.observe(this, Observer {
-            Snackbar.make(view, "Erreur lors du chargement des characters", Snackbar.LENGTH_SHORT).show()
+            view.DoSnackBar("Erreur lors de la récupération des personnages")
             swipe_refresh_layout.isRefreshing = false
         })
     }

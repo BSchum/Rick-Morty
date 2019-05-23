@@ -1,10 +1,12 @@
-package com.ynov.kotlin.rickmorty.data
+package com.ynov.kotlin.rickmorty.data.repository
 
+import com.ynov.kotlin.rickmorty.data.manager.ApiManager
+import com.ynov.kotlin.rickmorty.data.manager.CacheManager
 import com.ynov.kotlin.rickmorty.data.model.RMCharacter
 import com.ynov.kotlin.rickmorty.data.model.RMEpisode
 import io.reactivex.Single
 
-class DataRepository(private val apiManager : ApiManager , private val cacheManager: CacheManager){
+class DataRepository(private val apiManager : ApiManager, private val cacheManager: CacheManager){
     fun retrieveCharacterList(): Single<List<RMCharacter>> {
         return Single.defer<List<RMCharacter>>{
             if(cacheManager.characterList.isEmpty()){

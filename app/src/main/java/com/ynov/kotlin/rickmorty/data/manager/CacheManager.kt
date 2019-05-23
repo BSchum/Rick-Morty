@@ -1,4 +1,4 @@
-package com.ynov.kotlin.rickmorty.data
+package com.ynov.kotlin.rickmorty.data.manager
 
 import com.ynov.kotlin.rickmorty.data.model.RMCharacter
 import com.ynov.kotlin.rickmorty.data.model.RMEpisode

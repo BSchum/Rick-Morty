@@ -1,4 +1,4 @@
-package com.ynov.kotlin.rickmorty.data
+package com.ynov.kotlin.rickmorty.data.manager
 
 import com.ynov.kotlin.rickmorty.data.entity.character.CharacterListRemoteEntity
 import com.ynov.kotlin.rickmorty.data.entity.character.CharacterRemoteEntity

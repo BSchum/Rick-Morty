@@ -12,8 +12,6 @@ import kotlinx.android.synthetic.main.view_episode_list_item.view.*
 
 class EpisodesListAdapter : RecyclerView.Adapter<EpisodesListAdapter.ViewHolder>() {
     private var episodes: MutableList<RMEpisode> = mutableListOf()
-    private lateinit var context: Context;
-    var onClickCallBack: (id: Int) -> Unit = {}
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.view_episode_list_item, parent, false))
     }
@@ -27,11 +25,11 @@ class EpisodesListAdapter : RecyclerView.Adapter<EpisodesListAdapter.ViewHolder>
         notifyDataSetChanged()
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(this.episodes.get(position), onClickCallBack)
+        holder.bind(this.episodes.get(position))
     }
 
     class ViewHolder(@NonNull itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(rmEpisode: RMEpisode, onClickCallBack: (id: Int)-> Unit){
+        fun bind(rmEpisode: RMEpisode){
             itemView.episodeNameField.text = rmEpisode.name
             itemView.episodeAirDateField.text = rmEpisode.air_date
             itemView.episodeField.text = rmEpisode.episode
