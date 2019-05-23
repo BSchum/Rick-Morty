@@ -8,6 +8,4 @@
     <FrameLayout android:id="@+id/main_activity_fragment_container"
               android:layout_height="match_parent"
               android:layout_width="match_parent"/>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
