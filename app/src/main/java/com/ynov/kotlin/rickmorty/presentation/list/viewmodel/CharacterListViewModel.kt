@@ -11,11 +11,12 @@ import io.reactivex.schedulers.Schedulers
 
 class CharacterListViewModel : ViewModel() {
     var characterListLiveData : MutableLiveData<List<RMCharacter>> = MutableLiveData()
+    var errorLiveData: MutableLiveData<Throwable> = MutableLiveData()
     init {
         Refresh()
     }
 
-    fun Refresh(onSuccessCallBack: () -> Unit = {}){
+    fun Refresh(){
         RMApplication.app.repo
             .retrieveCharacterList()
             .subscribeOn(Schedulers.io())
@@ -23,10 +24,10 @@ class CharacterListViewModel : ViewModel() {
             .subscribeBy(
                 onSuccess = {
                     characterListLiveData.postValue(it)
-                    onSuccessCallBack()
                 },
                 onError = {
                     Log.e("ERROR", "", it)
+                    errorLiveData.postValue(it)
                 }
             )
     }
